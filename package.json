@@ -1,0 +1,19 @@
+{
+    "name": "version-app",
+    "version": "1.0.0",
+    "description": "An app that displays its own version",
+    "main": "index.js",
+    "scripts": {
+      "start": "node src/app.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git@github_personal:acll19/versionn-app.git"
+    },
+    "author": "Armando Collazo",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.17.2"
+    }
+  }
+  
