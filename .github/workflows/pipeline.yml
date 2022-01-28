@@ -6,6 +6,7 @@ on:
       - main
 jobs:
   BuildAndPublish:
+      concurrency: ci-${{ github.ref }}
       env:
         DOCKER_IMAGE_NAME: acll19/version-app # this could be anything
       runs-on: ubuntu-latest
@@ -31,8 +32,12 @@ jobs:
             tags: |
               ${{ env.DOCKER_IMAGE_NAME }}:latest
   ApplyInfra:
+    concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
       - uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.0.4
