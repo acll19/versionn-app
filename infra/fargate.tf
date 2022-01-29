@@ -17,7 +17,7 @@ resource "aws_ecs_task_definition" "versionn-app-task" {
     requires_compatibilities = ["FARGATE"]
     network_mode             = "awsvpc"
     cpu                      = "${var.app_cpu_limit}"
-    memory                   = ${var.app_memory_limit}"
+    memory                   = "${var.app_memory_limit}"
     container_definitions    = jsonencode([
         {
             name         = "${var.app_prefix}"
