@@ -16,9 +16,8 @@ jobs:
         
         - name: Create Image Tag
           run: |
-            commit_count=$(git rev-list --count HEAD)
             commit_sha=$(git rev-parse --short HEAD)
-            echo "IMAGE_TAG=$(echo $commit_count-$commit_sha)" >> $GITHUB_ENV
+            echo "IMAGE_TAG=$(echo $commit_sha)" >> $GITHUB_ENV
 
         - name: Set up Docker Buildx
           uses: docker/setup-buildx-action@v1
@@ -37,6 +36,7 @@ jobs:
             push: true
             tags: |
               ${{ env.DOCKER_IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+              ${{ env.DOCKER_IMAGE_NAME }}:latest
   ApplyInfraAndRelease:
     needs: BuildAndPublish
     concurrency: ci-${{ github.ref }}
@@ -50,9 +50,8 @@ jobs:
 
       - name: Create Image Tag
         run: |
-          commit_count=$(git rev-list --count HEAD)
           commit_sha=$(git rev-parse --short HEAD)
-          echo "IMAGE_TAG=$(echo $commit_count-$commit_sha)" >> $GITHUB_ENV
+          echo "IMAGE_TAG=$(echo $commit_sha)" >> $GITHUB_ENV
 
       - uses: hashicorp/setup-terraform@v1
 
