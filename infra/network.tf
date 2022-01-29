@@ -4,4 +4,5 @@ resource "aws_vpc" "versionn-app-vpc" {
 
 resource "aws_subnet" "versionn-app-subnet" {
   vpc_id     = aws_vpc.versionn-app-vpc.id
+  cidr_block = "10.0.1.0/24"
 }
