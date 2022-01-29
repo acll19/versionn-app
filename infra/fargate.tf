@@ -27,7 +27,7 @@ resource "aws_ecs_task_definition" "versionn-app-task" {
             essential    = true
             portMappings = [{
                 containerPort = 8080
-                hostPort     = 80
+                hostPort     = 8080
             }]
         }
     ])
