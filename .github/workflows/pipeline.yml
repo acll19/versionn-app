@@ -13,6 +13,11 @@ jobs:
       steps:
         - name: Checkout Code
           uses: actions/checkout@v2
+          run: |
+            commit_count=$(git rev-list --count HEAD)
+            commit_sha=$(git rev-parse --short HEAD)
+          env:
+            IMAGE_TAG: "${{ commit_count }}-${{ commit_sha }}"
 
         - name: Set up Docker Buildx
           uses: docker/setup-buildx-action@v1
@@ -30,7 +35,7 @@ jobs:
             file: ./Dockerfile
             push: true
             tags: |
-              ${{ env.DOCKER_IMAGE_NAME }}:latest
+              ${{ env.DOCKER_IMAGE_NAME }}:${{ env.IMAGE_TAG }}
   ApplyInfra:
     needs: BuildAndPublish
     concurrency: ci-${{ github.ref }}
@@ -41,6 +46,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
+        run: |
+          commit_count=$(git rev-list --count HEAD)
+          commit_sha=$(git rev-parse --short HEAD)
+        env:
+          IMAGE_TAG: "${{ commit_count }}-${{ commit_sha }}"
 
       - uses: hashicorp/setup-terraform@v1
 
@@ -57,4 +67,4 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
-        run: terraform apply -auto-approve -input=false
+        run: terraform apply -auto-approve -input=false -var "app_image_name=${{ env.IMAGE_TAG }}"
