@@ -13,6 +13,8 @@ jobs:
       steps:
         - name: Checkout Code
           uses: actions/checkout@v2
+        
+        - name: Create Image Tag
           run: |
             commit_count=$(git rev-list --count HEAD)
             commit_sha=$(git rev-parse --short HEAD)
@@ -46,6 +48,8 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
+
+      - name: Create Image Tag
         run: |
           commit_count=$(git rev-list --count HEAD)
           commit_sha=$(git rev-parse --short HEAD)
