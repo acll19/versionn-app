@@ -22,7 +22,7 @@ resource "aws_ecs_task_definition" "versionn-app-task" {
         {
             name         = "${var.app_prefix}"
             image        = "${var.app_image_name}"
-            cpu          = var.app_cpu_limitu
+            cpu          = var.app_cpu_limit
             memory       = var.app_memory_limit
             essential    = true
             portMappings = [{
