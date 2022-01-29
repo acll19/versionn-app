@@ -26,7 +26,7 @@ resource "aws_internet_gateway" "versionn-app_ecs_igw" {
 
 
 resource "aws_route_table" "versionn-app_route_table" {
-  vpc_id = "${aws_vpc.versionn-app_vpc.id}"
+  vpc_id = "${aws_vpc.versionn-app-vpc.id}"
 }
 
 resource aws_route "versionn-app_public_route" {
