@@ -19,3 +19,7 @@ resource "aws_subnet" "versionn-app-subnet-b" {
   cidr_block        = "10.0.1.0/24"
   availability_zone = local.availability_zone_b
 }
+
+resource "aws_internet_gateway" "versionn-app_ecs_igw" {
+  vpc_id = "${aws_vpc.versionn-app-vpc.id}"
+}
