@@ -37,7 +37,7 @@ jobs:
             push: true
             tags: |
               ${{ env.DOCKER_IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-  ApplyInfra:
+  ApplyInfraAndRelease:
     needs: BuildAndPublish
     concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest

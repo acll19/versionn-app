@@ -26,3 +26,8 @@ variable "app_memory_limit" {
 variable "app_image_name" {
     description = "Docker image name"
 }
+
+variable "container_port" {
+  description = "The port value to expose the app"
+  default     = 8080
+}
