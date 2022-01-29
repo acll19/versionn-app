@@ -26,7 +26,7 @@ resource "aws_ecs_task_definition" "versionn-app-task" {
             memory       = var.app_memory_limit
             essential    = true
             portMappings = [{
-                ontainerPort = 8080
+                containerPort = 8080
                 hostPort     = 80
             }]
         }
