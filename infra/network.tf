@@ -39,3 +39,12 @@ resource "aws_route_table_association" "versionn-app-route-table-association-pub
   subnet_id      = "${aws_subnet.versionn-app-subnet-public.id}"
   route_table_id = "${aws_route_table.versionn-app-route-table.id}"
 }
+
+resource "aws_eip" "versionn-app-elastic-ip" {
+  vpc = true
+}
+
+resource "aws_nat_gateway" "versionn-app-ecs-ngw" {
+  allocation_id = "${aws_eip.versionn-app-elastic-ip.id}" 
+  subnet_id = "${aws_subnet.versionn-app-subnet-public.id}" 
+}
