@@ -4,11 +4,13 @@ on:
   push:
     branches:
       - main
+
+env:
+  DOCKER_IMAGE_NAME: acll19/version-app
+
 jobs:
   BuildAndPublish:
       concurrency: ci-${{ github.ref }}
-      env:
-        DOCKER_IMAGE_NAME: acll19/version-app # this could be anything
       runs-on: ubuntu-latest
       steps:
         - name: Checkout Code
@@ -68,4 +70,4 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
-        run: terraform apply -auto-approve -input=false -var "app_image_name=${{ env.IMAGE_TAG }}"
+        run: terraform apply -auto-approve -input=false -var "app_image_name=${{ env.DOCKER_IMAGE_NAME }}:${{ env.IMAGE_TAG }}"

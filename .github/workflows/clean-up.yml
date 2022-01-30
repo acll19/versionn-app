@@ -2,6 +2,9 @@ name: cleanup
 
 on: workflow_dispatch
 
+env:
+  DOCKER_IMAGE_NAME: acll19/version-app
+
 jobs:
   TerraformDestroy:
       runs-on: ubuntu-latest
@@ -33,4 +36,4 @@ jobs:
           env:
             AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
             AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
-          run: terraform destroy -auto-approve -input=false -var "app_image_name=${{ env.IMAGE_TAG }}"
+          run: terraform destroy -auto-approve -input=false -var "app_image_name=${{ env.DOCKER_IMAGE_NAME }}:${{ env.IMAGE_TAG }}"
