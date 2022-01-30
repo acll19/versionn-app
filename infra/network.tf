@@ -20,7 +20,7 @@ resource "aws_subnet" "versionn-app-subnet-b" {
   availability_zone = local.availability_zone_b
 }
 
-resource "aws_internet_gateway" "versionn-app-ecs-igw-public-1" {
+resource "aws_internet_gateway" "versionn-app-ecs-igw" {
   vpc_id = "${aws_vpc.versionn-app-vpc.id}"
 }
 
@@ -32,7 +32,7 @@ resource "aws_route_table" "versionn-app-route-table" {
 resource aws_route "versionn-app-public-route" {
   route_table_id         = "${aws_route_table.versionn-app-route-table.id}"
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = "${aws_internet_gateway.versionn-app-ecs-igw-public-1.id}"
+  gateway_id             = "${aws_internet_gateway.versionn-app-ecs-igw.id}"
 }
 
 resource "aws_route_table_association" "versionn-app-route-table-association-public" {
