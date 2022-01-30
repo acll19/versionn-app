@@ -52,6 +52,7 @@ resource "aws_ecs_service" "versionn-app-service" {
   }
 
   network_configuration {
+      assign_public_ip = true
       subnets = [
           aws_subnet.versionn-app-subnet-public.id, 
           aws_subnet.versionn-app-subnet-b.id
