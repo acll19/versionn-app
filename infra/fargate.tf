@@ -17,8 +17,8 @@ resource "aws_ecs_task_definition" "versionn-app-task" {
         {
             "name": "${var.app_prefix}-app",
             "image": "${var.app_image_name}",
-            "cpu": "${var.app_cpu_limit}",
-            "memory": "${var.app_memory_limit}",
+            "cpu": ${var.app_cpu_limit},
+            "memory": ${var.app_memory_limit},
             "essential": true,
             "portMappings": [{
                 "containerPort": "${var.container_port}",
