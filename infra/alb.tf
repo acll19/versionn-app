@@ -16,3 +16,14 @@ resource "aws_lb_target_group" "version-app-target-group" {
   target_type = "ip"
   depends_on = [aws_lb.versionn-app-alb]
 }
+
+resource "aws_alb_listener" "version-app-listener_http" {
+  load_balancer_arn = "${aws_lb.versionn-app-alb.arn}"
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    target_group_arn = "${aws_lb_target_group.version-app-target-group.arn}"
+    type             = "forward"
+  }
+}

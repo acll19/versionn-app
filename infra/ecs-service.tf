@@ -9,6 +9,4 @@ resource "aws_ecs_service" "versionn-app-service" {
     container_name   = "${var.app_prefix}-app"
     container_port   = var.container_port
   }
-
-  depends_on = [aws_lb_target_group.version-app-target-group]
 }
