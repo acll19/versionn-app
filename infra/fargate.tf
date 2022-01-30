@@ -44,6 +44,7 @@ resource "aws_ecs_service" "versionn-app-service" {
   task_definition                    = aws_ecs_task_definition.versionn-app-task.arn
   desired_count                      = 2
   deployment_minimum_healthy_percent = 50
+  deployment_maximum_percent         = 100
   launch_type                        = "FARGATE"
 
   load_balancer {
