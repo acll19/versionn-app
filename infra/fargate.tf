@@ -12,27 +12,29 @@ resource "aws_ecs_task_definition" "versionn-app-task" {
     network_mode             = "awsvpc"
     cpu                      = "${var.app_cpu_limit}"
     memory                   = "${var.app_memory_limit}"
-    container_definitions    = jsonencode([
+    container_definitions    =  <<DEFINITION
+    [
         {
-            name         = "${var.app_prefix}-app"
-            image        = "${var.app_image_name}"
-            cpu          = var.app_cpu_limit
-            memory       = var.app_memory_limit
-            essential    = true
-            portMappings = [{
-                containerPort = var.container_port
-                hostPort     = var.container_port
+            "name": "${var.app_prefix}-app"
+            "image": "${var.app_image_name}"
+            "cpu": "${var.app_cpu_limit}"
+            "memory": "${var.app_memory_limit}"
+            "essential": true
+            "portMappings": [{
+                "containerPort": "${var.container_port}"
+                "hostPort": "${var.container_port}"
             }],
-            logConfiguration = {
-                logDriver = "awslogs",
-                options   = {
-                    "awslogs-group"         = "${aws_cloudwatch_log_group.versionn-app-task-log-group}",
-                    "awslogs-region"        = var.region,
-                    "awslogs-stream-prefix" = "ecs"
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "${aws_cloudwatch_log_group.versionn-app-task-log-group}",
+                    "awslogs-region": "${var.region}",
+                    "awslogs-stream-prefix": "ecs"
                 } 
             }
         }
-    ])
+    ]
+    DEFINITION
 }
 
 resource "aws_ecs_service" "versionn-app-service" {
