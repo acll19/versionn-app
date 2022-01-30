@@ -22,7 +22,15 @@ resource "aws_ecs_task_definition" "versionn-app-task" {
             portMappings = [{
                 containerPort = var.container_port
                 hostPort     = var.container_port
-            }]
+            }],
+            logConfiguration = {
+                logDriver = "awslogs",
+                options   = {
+                    "awslogs-group"         = "${aws_cloudwatch_log_group.versionn-app-task-log-group}",
+                    "awslogs-region"        = var.region,
+                    "awslogs-stream-prefix" = "ecs"
+                } 
+            }
         }
     ])
 }
