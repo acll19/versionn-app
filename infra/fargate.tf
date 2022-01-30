@@ -21,8 +21,8 @@ resource "aws_ecs_task_definition" "versionn-app-task" {
             "memory": ${var.app_memory_limit},
             "essential": true,
             "portMappings": [{
-                "containerPort": "${var.container_port}",
-                "hostPort": "${var.container_port}"
+                "containerPort": ${var.container_port},
+                "hostPort": ${var.container_port}
             }],
             "logConfiguration": {
                 "logDriver": "awslogs",
