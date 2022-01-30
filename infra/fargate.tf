@@ -40,6 +40,9 @@ resource "aws_ecs_service" "versionn-app-service" {
   }
 
   network_configuration {
-      subnets = [aws_subnet.versionn-app-subnet-public, aws_subnet.versionn-app-subnet-b]
+      subnets = [
+          aws_subnet.versionn-app-subnet-public.id, 
+          aws_subnet.versionn-app-subnet-b.id
+      ]
   }
 }
