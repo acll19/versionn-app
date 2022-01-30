@@ -15,13 +15,13 @@ resource "aws_ecs_task_definition" "versionn-app-task" {
     container_definitions    =  <<DEFINITION
     [
         {
-            "name": "${var.app_prefix}-app"
-            "image": "${var.app_image_name}"
-            "cpu": "${var.app_cpu_limit}"
-            "memory": "${var.app_memory_limit}"
-            "essential": true
+            "name": "${var.app_prefix}-app",
+            "image": "${var.app_image_name}",
+            "cpu": "${var.app_cpu_limit}",
+            "memory": "${var.app_memory_limit}",
+            "essential": true,
             "portMappings": [{
-                "containerPort": "${var.container_port}"
+                "containerPort": "${var.container_port}",
                 "hostPort": "${var.container_port}"
             }],
             "logConfiguration": {
