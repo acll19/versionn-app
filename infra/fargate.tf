@@ -39,11 +39,12 @@ resource "aws_ecs_task_definition" "versionn-app-task" {
 }
 
 resource "aws_ecs_service" "versionn-app-service" {
-  name            = "${var.app_prefix}-service"
-  cluster         = aws_ecs_cluster.versionn-app-ecs-cluster.id
-  task_definition = aws_ecs_task_definition.versionn-app-task.arn
-  desired_count   = 2
-  launch_type     = "FARGATE"
+  name                               = "${var.app_prefix}-service"
+  cluster                            = aws_ecs_cluster.versionn-app-ecs-cluster.id
+  task_definition                    = aws_ecs_task_definition.versionn-app-task.arn
+  desired_count                      = 2
+  deployment_minimum_healthy_percent = 1
+  launch_type                        = "FARGATE"
 
   load_balancer {
     target_group_arn = aws_lb_target_group.version-app-target-group.arn
