@@ -12,6 +12,7 @@ resource "aws_ecs_task_definition" "versionn-app-task" {
     network_mode             = "awsvpc"
     cpu                      = "${var.app_cpu_limit}"
     memory                   = "${var.app_memory_limit}"
+    execution_role_arn       = aws_iam_role.versionn-app-role.arn
     container_definitions    =  <<DEFINITION
     [
         {
