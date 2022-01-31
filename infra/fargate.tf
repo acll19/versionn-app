@@ -1,3 +1,8 @@
+locals {
+  container_name = "${var.app_prefix}-app"
+}
+
+
 resource "aws_ecs_cluster" "versionn-app-ecs-cluster" {
   name = "${var.app_prefix}-ECSCluster"
 
@@ -16,7 +21,7 @@ resource "aws_ecs_task_definition" "versionn-app-task" {
     container_definitions    =  <<DEFINITION
     [
         {
-            "name": "${var.app_prefix}-app",
+            "name": "${local.container_name}",
             "image": "${var.app_image_name}",
             "cpu": ${var.app_cpu_limit},
             "memory": ${var.app_memory_limit},
@@ -49,7 +54,7 @@ resource "aws_ecs_service" "versionn-app-service" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.version-app-target-group.arn
-    container_name   = "${var.app_prefix}-app"
+    container_name   = "${local.container_name}"
     container_port   = var.container_port
   }
 

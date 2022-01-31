@@ -25,6 +25,10 @@ resource "aws_lb_target_group" "version-app-target-group" {
   }
 
   depends_on = [aws_lb.versionn-app-alb]
+  
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_alb_listener" "version-app-listener_http" {
