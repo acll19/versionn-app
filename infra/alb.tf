@@ -35,15 +35,15 @@ resource "aws_lb_target_group" "version-app-target-group" {
   vpc_id      = aws_vpc.versionn-app-vpc.id
   target_type = "ip"
 
-  health_check {
-    interval            = 30
-    path                = "/version"
-    port                = var.container_port
-    timeout             = 25
-    healthy_threshold   = 2
-    unhealthy_threshold = 3
-    matcher             = 200
-  }
+  # health_check {
+  #   interval            = 30
+  #   path                = "/version"
+  #   port                = var.container_port
+  #   timeout             = 25
+  #   healthy_threshold   = 2
+  #   unhealthy_threshold = 3
+  #   matcher             = 200
+  # }
 
   depends_on = [aws_lb.versionn-app-alb]
   

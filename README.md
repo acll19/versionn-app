@@ -1,5 +1,5 @@
 # versionn-app
-Verrsionn App (Yess with double n) is a sample application that (you guessed it!) displays its version every time you make a request to the `/version` endpoint. It is built with ExpressJS and deployed to AWS Elasic Container Registry (ECS).
+Versionn App (yes with double n) is a sample application that (you guessed it!) displays its version every time you make a request to the `/version` endpoint. It is built with ExpressJS and deployed to AWS Elasic Container Registry (ECS).
 
 
 ## Setup
