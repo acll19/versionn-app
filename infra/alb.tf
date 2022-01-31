@@ -3,8 +3,8 @@ resource "aws_security_group" "versionn-app-alb-security-group" {
   vpc_id      = "${aws_vpc.versionn-app-vpc.id}"
 
   ingress {
-    from_port   = var.container_port
-    to_port     = var.container_port
+    from_port   = var.load_balancer_port
+    to_port     = var.load_balancer_port
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
