@@ -38,6 +38,7 @@ resource "aws_lb_target_group" "version-app-target-group" {
   health_check {
     interval            = 30
     path                = "/version"
+    port                = var.container_port
     timeout             = 25
     healthy_threshold   = 2
     unhealthy_threshold = 3
