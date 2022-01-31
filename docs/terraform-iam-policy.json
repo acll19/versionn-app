@@ -1,0 +1,116 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": "iam:CreateServiceLinkedRole",
+            "Resource": "arn:aws:iam::*:role/aws-service-role/ecs.amazonaws.com/AWSServiceRoleForECS*",
+            "Condition": {
+                "StringLike": {
+                    "iam:AWSServiceName": "ecs.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": "iam:CreateServiceLinkedRole",
+            "Resource": "arn:aws:iam::*:role/aws-service-role/elasticloadbalancing.amazonaws.com/AWSServiceRoleForElasticLoadBalancing*",
+            "Condition": {
+                "StringLike": {
+                    "iam:AWSServiceName": "elasticloadbalancing.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Sid": "VisualEditor2",
+            "Effect": "Allow",
+            "Action": [
+                "route53domains:TransferDomain",
+                "route53domains:RenewDomain",
+                "route53domains:EnableDomainAutoRenew",
+                "route53domains:GetDomainDetail",
+                "route53domains:CheckDomainAvailability",
+                "route53domains:ListDomains",
+                "route53domains:RetrieveDomainAuthCode",
+                "route53domains:CheckDomainTransferability",
+                "route53domains:UpdateDomainNameservers",
+                "route53domains:UpdateDomainContactPrivacy",
+                "route53domains:UpdateDomainContact",
+                "route53:ListHostedZones",
+                "route53:GetHostedZone",
+                "route53:ListTagsForResource",
+                "route53:ChangeResourceRecordSets",
+                "route53:GetChange",
+                "route53:ListResourceRecordSets",
+                "ecs:DescribeTaskDefinition",
+                "ecs:DeregisterTaskDefinition",
+                "ecs:ListServices",
+                "ecs:CreateCapacityProvider",
+                "ecs:RegisterTaskDefinition",
+                "ecs:CreateTaskSet",
+                "ecs:CreateCluster",
+                "elasticloadbalancing:*",
+                "route53domains:EnableDomainTransferLock",
+                "route53domains:GetOperationDetail",
+                "route53domains:DeleteDomain",
+                "ecs:DeleteAccountSetting",
+                "route53domains:RegisterDomain",
+                "ec2:*",
+                "logs:CreateLogGroup",
+                "logs:DescribeLogGroups",
+                "logs:PutRetentionPolicy",
+                "logs:ListTagsLogGroup",
+                "logs:DeleteLogGroup",
+                "iam:CreateRole",
+                "iam:GetRole",
+                "iam:DeleteRole",
+                "iam:PassRole",
+                "iam:ListRolePolicies",
+                "iam:GetRolePolicy",
+                "iam:PutRolePolicy",
+                "iam:DeleteRolePolicy",
+                "iam:ListAttachedRolePolicies",
+                "iam:ListInstanceProfilesForRole",
+                "iam:UpdateAssumeRolePolicy"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor3",
+            "Effect": "Allow",
+            "Action": [
+                "ecs:UpdateCluster",
+                "ecs:UpdateClusterSettings",
+                "ecs:UpdateContainerInstancesState",
+                "ecs:UpdateCapacityProvider",
+                "ecs:DeleteService",
+                "ecs:DeleteCluster",
+                "s3:ListBucket",
+                "ecs:DeleteAttributes",
+                "ecs:DeleteTaskSet",
+                "ecs:DescribeClusters",
+                "ecs:DeleteCapacityProvider",
+                "s3:PutObject",
+                "s3:GetObject",
+                "ecs:UpdateService",
+                "ecs:CreateService",
+                "ecs:UpdateContainerAgent",
+                "ecs:DescribeServices",
+                "ecs:UpdateServicePrimaryTaskSet",
+                "s3:DeleteObject",
+                "ecs:UpdateTaskSet"
+            ],
+            "Resource": [
+                "arn:aws:s3:::terraform-backend-versionn-app",
+                "arn:aws:s3:::*/*",
+                "arn:aws:ecs:*:283802179366:task-set/*/*/*",
+                "arn:aws:ecs:*:283802179366:capacity-provider/*",
+                "arn:aws:ecs:*:283802179366:cluster/*",
+                "arn:aws:ecs:*:283802179366:container-instance/*",
+                "arn:aws:ecs:*:283802179366:service/*"
+            ]
+        }
+    ]
+}
