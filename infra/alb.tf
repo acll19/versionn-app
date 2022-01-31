@@ -9,7 +9,7 @@ resource "aws_lb" "versionn-app-alb" {
 }
 
 resource "aws_lb_target_group" "version-app-target-group" {
-  name        = "${var.app_prefix}-lb-tg"
+  name_prefix = "vn-app"
   port        = var.container_port
   protocol    = "HTTP"
   vpc_id      = aws_vpc.versionn-app-vpc.id
