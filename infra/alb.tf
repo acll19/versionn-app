@@ -10,7 +10,7 @@ resource "aws_lb" "versionn-app-alb" {
 
 resource "aws_lb_target_group" "version-app-target-group" {
   name        = "${var.app_prefix}-lb-tg"
-  port        = 80
+  port        = var.container_port
   protocol    = "HTTP"
   vpc_id      = aws_vpc.versionn-app-vpc.id
   target_type = "ip"
@@ -29,7 +29,7 @@ resource "aws_lb_target_group" "version-app-target-group" {
 
 resource "aws_alb_listener" "version-app-listener_http" {
   load_balancer_arn = "${aws_lb.versionn-app-alb.arn}"
-  port              = "80"
+  port              = "${var.container_port}"
   protocol          = "HTTP"
 
   default_action {
