@@ -28,6 +28,20 @@ variable "app_image_name" {
 }
 
 variable "container_port" {
-  description = "The port value to expose the app"
+  description = "The port value to expose the app in docker"
   default     = 8080
+}
+
+variable "load_balancer_port" {
+  description = "The port value to expose the app via the load balancer"
+  default     = 80
+}
+
+variable "route53_hosted_zone_name" {
+  default = "armandocollazo.com"
+}
+
+variable "app_subdomain" {
+  description = "Subdomain to register in a hosted zone record"
+  default     = "myapp"
 }

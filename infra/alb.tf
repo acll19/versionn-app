@@ -30,7 +30,7 @@ resource "aws_lb" "versionn-app-alb" {
 
 resource "aws_lb_target_group" "version-app-target-group" {
   name_prefix = "vn-app"
-  port        = var.container_port
+  port        = var.load_balancer_port
   protocol    = "HTTP"
   vpc_id      = aws_vpc.versionn-app-vpc.id
   target_type = "ip"
@@ -38,7 +38,6 @@ resource "aws_lb_target_group" "version-app-target-group" {
   health_check {
     interval            = 30
     path                = "/version"
-    port                = "${var.container_port}"
     timeout             = 25
     healthy_threshold   = 2
     unhealthy_threshold = 3
@@ -54,7 +53,7 @@ resource "aws_lb_target_group" "version-app-target-group" {
 
 resource "aws_alb_listener" "version-app-listener_http" {
   load_balancer_arn = "${aws_lb.versionn-app-alb.arn}"
-  port              = "${var.container_port}"
+  port              = "${var.load_balancer_port}"
   protocol          = "HTTP"
 
   default_action {
