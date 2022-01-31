@@ -16,6 +16,6 @@ COPY --from=dependencies /app/node_modules node_modules
 COPY . .
 
 USER node
-EXPOSE 80
+EXPOSE 8080
 ENTRYPOINT ["npm"]
 CMD ["start"]

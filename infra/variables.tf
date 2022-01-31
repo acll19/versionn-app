@@ -29,5 +29,5 @@ variable "app_image_name" {
 
 variable "container_port" {
   description = "The port value to expose the app"
-  default     = 80
+  default     = 8080
 }
