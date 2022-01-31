@@ -43,6 +43,6 @@ In order to run this application in production, in addition to creating an IAM U
 * Two additional secrets for the Github Actions workflows to authenticate to AWS: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY_ID`. Those credentials will be used in the Terraform steps so they need to be linked to the Terraform user.
 Additionally if you want the team to be able to review the Terraform plan before applying the changes, you can configure [hashicorp/setup-terraform@v1](https://github.com/hashicorp/setup-terraform#usage) Github Action to create a Pull Request as outputs.
 
-## External Refeences
+## External References
 * Terraform AWS VPC example: https://hiveit.co.uk/techshop/terraform-aws-vpc-example/04-create-the-application-load-balancer/
 * Provision AWS infrastructure using Terraform https://aws.amazon.com/es/blogs/developer/provision-aws-infrastructure-using-terraform-by-hashicorp-an-example-of-running-amazon-ecs-tasks-on-aws-fargate/
