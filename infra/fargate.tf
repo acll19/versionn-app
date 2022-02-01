@@ -6,8 +6,10 @@ locals {
 resource "aws_ecs_cluster" "versionn-app-ecs-cluster" {
   name = "${var.app_prefix}-ECSCluster"
 
-  tags = {
+  tags {
     Name = "${var.app_prefix}-ecs-cluster"
+    App    = "${var.app_prefix}-app"
+    Domain = "version"
   }
 }
 
@@ -41,6 +43,12 @@ resource "aws_ecs_task_definition" "versionn-app-task" {
         }
     ]
     DEFINITION
+
+    tags {
+      Name = "${var.app_prefix}-ecs-task-definition"
+      App    = "${var.app_prefix}-app"
+      Domain = "version"
+    }
 }
 
 resource "aws_ecs_service" "versionn-app-service" {
@@ -64,5 +72,11 @@ resource "aws_ecs_service" "versionn-app-service" {
           aws_subnet.versionn-app-subnet-public.id, 
           aws_subnet.versionn-app-subnet-b.id
       ]
+  }
+
+  tags {
+      Name = "${var.app_prefix}-ecs-service"
+      App    = "${var.app_prefix}-app"
+      Domain = "version"
   }
 }

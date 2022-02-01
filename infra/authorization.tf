@@ -13,10 +13,16 @@ resource "aws_iam_role" "versionn-app-role" {
       },
     ]
   })
+
+  tags {
+    Name   = "${var.app_prefix}-awslogs"
+    App    = "${var.app_prefix}-app"
+    Domain = "version"
+  }
 }
 
 resource "aws_iam_role_policy" "versionn-app-policy" {
-  name = "${var.app_prefix}-awslogs"
+  name = "${var.app_prefix}-log-policy"
   role = aws_iam_role.versionn-app-role.id
   
   policy = jsonencode({

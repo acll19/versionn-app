@@ -15,10 +15,16 @@ resource "aws_security_group" "versionn-app-alb-security-group" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags {
+    Name   = "${var.app_prefix}-security-group"
+    App    = "${var.app_prefix}-app"
+    Domain = "version"
+  }
 }
 
 resource "aws_lb" "versionn-app-alb" {
-  name               = "versionn-app-alb"
+  name               = "${var.app_prefix}-alb"
   internal           = false
   load_balancer_type = "application"
   security_groups    = ["${aws_security_group.versionn-app-alb-security-group.id}"]
@@ -26,6 +32,12 @@ resource "aws_lb" "versionn-app-alb" {
       aws_subnet.versionn-app-subnet-public.id,
       aws_subnet.versionn-app-subnet-b.id
   ]
+
+  tags {
+    Name   = "${var.app_prefix}-alb"
+    App    = "${var.app_prefix}-app"
+    Domain = "version"
+  }
 }
 
 resource "aws_lb_target_group" "version-app-target-group" {
@@ -50,6 +62,12 @@ resource "aws_lb_target_group" "version-app-target-group" {
   lifecycle {
     create_before_destroy = true
   }
+
+  tags {
+    Name   = "${var.app_prefix}-target-group"
+    App    = "${var.app_prefix}-app"
+    Domain = "version"
+  }
 }
 
 resource "aws_alb_listener" "version-app-listener_http" {
@@ -60,5 +78,11 @@ resource "aws_alb_listener" "version-app-listener_http" {
   default_action {
     target_group_arn = "${aws_lb_target_group.version-app-target-group.arn}"
     type             = "forward"
+  }
+
+  tags {
+    Name   = "${var.app_prefix}-http-listener"
+    App    = "${var.app_prefix}-app"
+    Domain = "version"
   }
 }
