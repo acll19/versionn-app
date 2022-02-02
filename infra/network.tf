@@ -20,7 +20,7 @@ resource "aws_subnet" "versionn-app-subnet-public" {
   availability_zone = local.availability_zone_a
 
   tags {
-    Name = "${var.app_prefix}-subnet-public
+    Name = "${var.app_prefix}-subnet-public"
     App    = "${var.app_prefix}-app"
     Domain = "version"
   }
@@ -42,7 +42,7 @@ resource "aws_internet_gateway" "versionn-app-ecs-igw" {
   vpc_id = "${aws_vpc.versionn-app-vpc.id}"
 
   tags {
-    Name = "${var.app_prefix}-internet-gateway
+    Name = "${var.app_prefix}-internet-gateway"
     App    = "${var.app_prefix}-app"
     Domain = "version"
   }
@@ -74,7 +74,7 @@ resource "aws_eip" "versionn-app-elastic-ip" {
   vpc = true
 
   tags {
-    Name = "${var.app_prefix}-elastic-ip
+    Name = "${var.app_prefix}-elastic-ip"
     App    = "${var.app_prefix}-app"
     Domain = "version"
   }
@@ -85,7 +85,7 @@ resource "aws_nat_gateway" "versionn-app-ecs-ngw" {
   subnet_id = "${aws_subnet.versionn-app-subnet-public.id}" 
 
   tags {
-    Name = "${var.app_prefix}-nat-gateway
+    Name = "${var.app_prefix}-nat-gateway"
     App    = "${var.app_prefix}-app"
     Domain = "version"
   }
