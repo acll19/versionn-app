@@ -32,7 +32,7 @@ After you have made changes to the infra description you can run `terraform plan
 ## Install instructions
 This repository containes 2 Github Actions workflows [ci](.github/workflows/pipeline.yml) and [cleanup](.github/workflows/clean-up.yml). 
 The ci workflow has 2 jobs. The first one called `BuildAndPublish` builds the [Docker](https://www.docker.com/) image and then publishes it to [Docker Hub](https://hub.docker.com/) public rergistry. The second job is called `ApplyInfraAndRelease`, it runs `Terraform apply` which updates the infra and runs a new ECS task. This last part will always happen because this workflow will always create and push a new Docker image with every build.<br/>
-The cleanup workflow runs a `terraform desroy` which deletes all resources that are managed by terraform. Please, beware that if you need to do any changes to the infra, it is strongly recommended that you do so via Terraform, otherwise, things might get messy. Here is a guide on [how to run the cleanup workflow](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow).
+The cleanup workflow runs a `terraform desroy` which deletes all resources that are managed by terraform. Please, beware that if you need to do any changes to the infra, it is strongly recommended that you do so via Terraform, otherwise, things might get messy. Find here a guide on [how to run the cleanup workflow](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow).
 
 
 ## What would be required to take this to production?
